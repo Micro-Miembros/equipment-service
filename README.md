@@ -1,2 +1,2 @@
-# member-service
-The following repository contains code pertaining to member related services in the Micro-Gym domain.
+# equipment-service
+The following repository contains code pertaining to equipment related services in the Micro-Gym domain.
