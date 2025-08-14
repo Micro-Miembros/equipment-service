@@ -1,11 +1,11 @@
-package co.analisys.biblioteca;
+package co.analisys.gimnasio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UsuarioServiceApplication {
+public class EquipoServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(UsuarioServiceApplication.class, args);
+		SpringApplication.run(EquipoServiceApplication.class, args);
 	}
 }
