@@ -22,4 +22,14 @@ public class EquipoController {
     public List<Equipo> obtenerTodosEquipos() {
         return equipoService.obtenerTodosEquipos();
     }
+
+    @PostMapping("/equipos/{id}/reservar")
+    public boolean reservarEquipo(@PathVariable Long id) {
+        return equipoService.reservarEquipo(id);
+    }
+
+    @PostMapping("/equipos/{id}/devolver")
+    public boolean devolverEquipo(@PathVariable Long id) {
+        return equipoService.devolverEquipo(id);
+    }
 }
