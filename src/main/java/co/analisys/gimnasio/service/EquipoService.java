@@ -22,29 +22,29 @@ public class EquipoService {
         return equipoRepository.findAll();
     }
 
-    public boolean reservarEquipo(Long id) {
+    public boolean reservarEquipos(Long id, Long cantidad) {
         if (!equipoRepository.existsById(id)) {
             throw new EquipoNoEncontrado(id);
         }
 
         Equipo equipo = equipoRepository.findById(id).get();
 
-        if (equipo.getCantidad() <= 0) {
+        if (equipo.getCantidad() < cantidad) {
             throw new EquipoNoDisponible(id);
         }
 
-        equipo.setCantidad(equipo.getCantidad() - 1);
+        equipo.setCantidad(equipo.getCantidad() - cantidad.intValue());
         equipoRepository.save(equipo);
         return true;
     }
 
-    public boolean devolverEquipo(Long id) {
+    public boolean devolverEquipos(Long id, Long cantidad) {
         if (!equipoRepository.existsById(id)) {
             throw new EquipoNoEncontrado(id);
         }
 
         Equipo equipo = equipoRepository.findById(id).get();
-        equipo.setCantidad(equipo.getCantidad() + 1);
+        equipo.setCantidad(equipo.getCantidad() + cantidad.intValue());
         equipoRepository.save(equipo);
         return true;
     }

@@ -23,13 +23,13 @@ public class EquipoController {
         return equipoService.obtenerTodosEquipos();
     }
 
-    @PostMapping("/equipos/{id}/reservar")
-    public boolean reservarEquipo(@PathVariable Long id) {
-        return equipoService.reservarEquipo(id);
+    @PostMapping("/equipos/{id}/reservar/{cantidad}")
+    public boolean reservarEquipo(@PathVariable Long id, @PathVariable Long cantidad) {
+        return equipoService.reservarEquipos(id, cantidad);
     }
 
-    @PostMapping("/equipos/{id}/devolver")
-    public boolean devolverEquipo(@PathVariable Long id) {
-        return equipoService.devolverEquipo(id);
+    @PostMapping("/equipos/{id}/devolver/{cantidad}")
+    public boolean devolverEquipo(@PathVariable Long id, @PathVariable Long cantidad) {
+        return equipoService.devolverEquipos(id, cantidad);
     }
 }
