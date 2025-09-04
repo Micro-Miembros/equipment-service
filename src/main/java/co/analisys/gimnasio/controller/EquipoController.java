@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class EquipoController {
     })
     @Operation(summary = "Agregar nuevo equipo", description = "Permite agregar un nuevo equipo al gimnasio")
     @PostMapping("/equipos")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Equipo agregarEquipo(@RequestBody Equipo equipo) {
         return equipoService.agregarEquipo(equipo);
     }
@@ -40,6 +42,7 @@ public class EquipoController {
     })
     @Operation(summary = "Obtener todos los equipos", description = "Permite obtener la lista de todos los equipos del gimnasio")
     @GetMapping("/equipos")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER', 'ROLE_MEMBER')")
     public List<Equipo> obtenerTodosEquipos() {
         return equipoService.obtenerTodosEquipos();
     }
@@ -53,6 +56,7 @@ public class EquipoController {
     })
     @Operation(summary = "Reservar equipo", description = "Permite reservar una cantidad específica de un equipo")
     @PostMapping("/equipos/{id}/reservar/{cantidad}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public boolean reservarEquipo(@PathVariable Long id, @PathVariable Long cantidad) {
         return equipoService.reservarEquipos(id, cantidad);
     }
@@ -66,6 +70,7 @@ public class EquipoController {
     })
     @Operation(summary = "Devolver equipo", description = "Permite devolver una cantidad específica de un equipo reservado")
     @PostMapping("/equipos/{id}/devolver/{cantidad}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public boolean devolverEquipo(@PathVariable Long id, @PathVariable Long cantidad) {
         return equipoService.devolverEquipos(id, cantidad);
     }
